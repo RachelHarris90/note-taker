@@ -32,6 +32,10 @@ $ git clone https://github.com/RachelHarris90/note-taker.git
 # Deployment
 This app is deployed in Heroku at this [link](https://dashboard.heroku.com/apps/note-taker-rachel-harris)
 
+# Demonstration
+![Homepage](/public/assets/images/homepage.png) 
+
+![Taking a new note](/public/assets/images/new-note.png)
 
 ## License
 MIT.
