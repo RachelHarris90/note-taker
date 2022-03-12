@@ -1,7 +1,12 @@
 {
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "dependencies": {
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
+    "heroku": "^7.59.4",
     "path": "^0.12.7"
   }
 }
