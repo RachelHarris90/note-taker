@@ -23,30 +23,35 @@ app.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
     return res.json(JSON.parse(data));
   });
-}
-
-);
-
-// POST request to add new note
-// Append note to array in memory then write array each time (because it's required)
-app.post('/api/notes', (req, res) => {
-  const { title, text } = req.body;
-  if (title && text) {
-    const newNote = {
-      title,
-      text,
-    };
-    const response = {
-      status: 'success',
-      body: newNote,
-    };
-    console.log(response);
-    res.status(201).json(response);
-  } else {
-    res.status(500).json('Error in posting note')
-  }
-  // TODO - push new data into array
 });
+
+app.post('/api/notes', (req, res) => {
+    const { title, text } = req.body;
+
+    if (title && text) {
+      const newNote = {
+        title,
+        text,
+      };
+      const response = {
+        status: 'success',
+        body: newNote,
+      };
+      fs.readFile('./db/db.json', 'utf8', (err, data => {
+        if (err) {
+          console.error(err);
+        } else {
+            const newNotes = JSON.parse(data);
+            newNotes.push(response.body);
+            fs.writeFile('./db/db.json', JSON.stringify(newNotes))
+          }
+        }
+      ))
+    } else {
+      res.status(500).json('Error in saving note')
+    }
+  });
+
 
 // TODO - delete notes
 
