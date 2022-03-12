@@ -32,20 +32,6 @@ $ git clone https://github.com/RachelHarris90/note-taker.git
 # Deployment
 This app is deployed in Heroku at this [link](https://dashboard.heroku.com/apps/note-taker-rachel-harris)
 
-## Demonstration
-Watch the [walkthrough video](https://drive.google.com/file/d/1cRquQ4eXVRrCe-kG9mB6zeDFszw0cKIj/view) to see the application in use 
-
-![Example of command-line](/assets/command-line-example.png)
-
-After running the application from the command-line, an index.html page is generated and can be viewed in a web browser.
-
-![Example of webpage](/assets/webpage-example.png)
-
 
 ## License
-Not licensed.
-
-## Tests
-This code is unit tested using Jest.
-
-Watch the [test demonstration video](https://drive.google.com/file/d/12ZCdzT6RU65C4TGzQZ_9V03gju3mS7zl/view) to see tests run and passing
+MIT.
