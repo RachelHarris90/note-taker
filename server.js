@@ -20,18 +20,33 @@ app.get('/notes', (req, res) =>
 
 // Get notes json
 app.get('/api/notes', (req, res) => {
-  res.json(notesData)
-    // fs.readFile('./db/db.json', function(err, data) {
-    // res.json(JSON.parse(data));
-  // });
+    fs.readFile('./db/db.json', (err, data) => {
+    return res.json(JSON.parse(data));
+  });
 }
 
 );
 
-// TODO - post notes
-// app.post('/api/notes', (req, res) => {
-//   notesData = JSON.parse(data);
-// })
+// POST request to add new note
+// Append note to array in memory then write array each time (because it's required)
+app.post('/api/notes', (req, res) => {
+  const { title, text } = req.body;
+  if (title && text) {
+    const newNote = {
+      title,
+      text,
+    };
+    const response = {
+      status: 'success',
+      body: newNote,
+    };
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json('Error in posting note')
+  }
+  // TODO - push new data into array
+});
 
 // TODO - delete notes
 
