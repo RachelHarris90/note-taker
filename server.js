@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const notesData = require('./db/db.json')
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = 3001;
@@ -32,26 +33,32 @@ app.post('/api/notes', (req, res) => {
       const newNote = {
         title,
         text,
+        id: uuid4()
       };
       const response = {
         status: 'success',
         body: newNote,
       };
-      fs.readFile('./db/db.json', 'utf8', (err, data => {
-        if (err) {
+      fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if(err) {
           console.error(err);
         } else {
             const newNotes = JSON.parse(data);
             newNotes.push(response.body);
-            fs.writeFile('./db/db.json', JSON.stringify(newNotes))
+            fs.writeFile('./db/db.json', JSON.stringify(newNotes), (err) => {
+              if(err) {
+                console.log(err)
+              } else {
+                console.log('New notes saved to array')
+              }
+            })
           }
         }
-      ))
+      )
     } else {
       res.status(500).json('Error in saving note')
     }
   });
-
 
 // TODO - delete notes
 
